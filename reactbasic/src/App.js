@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import State from './component/state';
 import { useState } from 'react';
+import Box from './component/Box';
 
 
 function App() {
