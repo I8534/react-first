@@ -1,128 +1,35 @@
 /* eslint-disalbe */
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
-
+import State from './component/state';
+import { useState } from 'react';
 
 
 function App() {
-  let user = 'J';
-  let [count, setCount] = useState(0);
-  // count에 0을 넣은 것이랑 똑같은 코드
-  // setCount는 함수
-  let [like, setLike] = useState([0,0,0]);
+  let num = 0;
+  const [count, setCount] = useState(0)
+  console.log(count);
+  let increase = () => {
+    num = num + 1;
+    setCount(count + 1);
+    console.log("num", num, "state", count);
+    // 이렇게 하면 num이 1만 나온다. 변경값이 나오면 이 함수가 재랜더링 되면서 function이 다시 다 재실행된다. 즉 변수에 담긴 값은 다시 초기화된다.
+    // state는 값을 저장하고 반복하지만 한박자 느리다고 생각하면 된다. 
+    // 다 재실행되기 때문에 다 한번 훑고 실행이 되기 때문에 화면에는 가령 40이지만 콘솔로그에는 39라고 뜬다.
 
-
-
-  // usestate는 변수처럼 자료를 보관할 수 있는 state 문법이다. 
-  // 우선 그냥 변경함수를 호출해서 변경한다 정도만 기억하자. 
-  let [title, setTitle] = useState(["dw아카데미 503호", "dw아카데미 502호", "dw아카데미 501호"]);
-  let x = title.map(function(state){
-    return <div>state</div>;
-  })
-  // 변수에 들어있는 데이터 html에 넣기
-  // 이 방법은 jsx 중괄호 문법 사용
-  // 한곳에다가 여러가지 자료를 저장하고 싶을 때 arry[]를 사용한다.
-  // let [bgc,setBgc] = useState('');
-  let [bgColor,setBgc] = useState('');
-
-  let changeBg = () => {
-    let newBg = bgColor == 'white' ? 'red' : 'white';
-    setBgc(newBg);
+    // 이렇게 이해하는 것이 맞는지? 버튼을 누르면 increase 함수가 실행이 되는데
+    // 그 안에 있는 setCount가 실행 되고 그 다음 콘솔로그가 실행되어야 increase함수가 완전히 실행이 되는 것이다.
+    // 그렇기 때문에 콘솔로그는 setcount의 함수 결과가 반영되기 전의 카운트 값을 보여주는 것
+    // 그리고 화면상에는 increase함수가 완전히 실행되어 변한 count 값이 반영된다고 생각하면 되는지?
   }
 
-
-// map함수가 아래의 어레이의 갯수만큼 리턴을 반복해준다.
-// return에서 여러 줄이면 소괄호로 묶어서 쓴다.
-// 매개변수를 쓰면 array의 변수들을 받아서 반복해준다.
-  [1,2,3].map(function(num){
-    return console.log(num);
-  })
-
-  let num = [1,2,3,4,5];
-  let newNum = num.map((num)=> num + 1);
-  console.log(num);
-  console.log(newNum);
-
-
-
   return (
-    <div className="App" style={{backgroundColor: bgColor}}>
-      <h1>Hello, {user}!</h1>
-      <p>this is a react app</p>
-
-      <div>
-        <p>클릭시 + {count}</p>
-        <button onClick={()=>{
-          setCount(count + 1)
-          // setCount 호출될 때마다 즉 버튼을 클릭 할 때마다 count에 1을 더해준다는 함수를 setCount에 넣는다.
-        }}>Click me</button>
-      </div>
-
-        {
-          ['jung', 'jae', 'hak'].map(function(a){
-            return a.toUpperCase()
-          })
-        }
-
-
-      {
-        title.map(function(a, i){
-
-           return (
-            <div className='list' key={i}>
-            <h4>{a}</h4>
-            <span onClick={()=>{
-              let copy =[...like];
-              copy[i]= copy[i]+1;
-              setLike(copy)}}>👍 {like[i]}</span>
-            <p>안녕하세요. 저는 이예진입니다.</p>
-          </div>
-          )
-        })
-      }
-
-스테이
-
-      {/* <div className='list'>
-        <h4>{title[0]}</h4>
-        <span onClick={()=>{setLike(like + 1)}}>👍 {like}</span>
-        <p>안녕하세요. 저는 이예진입니다.</p>
-      </div> */}
-
-      {/* <div className='list'>
-        <h4>{title[1]}</h4>
-        <span onClick={()=>{setLike(like + 1)}}>👍 {like}</span>
-        <p>안녕하세요. 저는 이예진입니다.</p>
-      </div>
-
-      <div className='list'>
-        <h4>{title[2]}</h4>
-        <span onClick={()=>{setLike(like + 1)}}>👍 {like}</span>
-        <p>안녕하세요. 저는 이예진입니다.</p>
-      </div> */}
-
-
-        <button onClick={()=>{
-          let copy = [...title]; 
-        copy.sort();
-        setTitle(copy);
-        // 배열에서 값을 바꿀 땐 반드시 딥카피로 해야지 샐로우카피로 하면 안된다. 왜냐하면 샐로우카피는 원본을 바꾸기 때문에 jsx에서는 안 먹힌다.
-        }}>글 제목 변경</button>
-{/* 
-        <button onClick={()=>{
-
-        setBgc('yellow'); // 변경함수에 변경값을 그냥 넣는다.
-        }}>배경색 변경</button> */}
-
-        {/* <button onClick={()=>{
-        setBgc(bgc==='' ? 'red' : '');
-        }}>배경색 변경</button> */}
-
-        <button onClick={changeBg}>배경색 변경</button>
-
-    </div>
-  );
+   <div className='App'>
+    {/* <State/> */}
+    <h1>{count}</h1>
+    <button onClick={increase}>+1</button>
+   </div>
+ );
 }
 
 export default App;
@@ -130,3 +37,36 @@ export default App;
 
 
 
+// 리엑트 자체가 stat에 반응하게 만들어졌다 그래서 리엑트라고 하는 것이다.
+// 그래서 이 스테이트 변경함수에 변경된 값이 있을 때 실행이 되도록 하는 것이다. num = num + 1에는 반응을 안 한 이유
+// 리액트는 변수값이 업데이트 됐다고 ui를 재렌더링하지는 안흔다.
+// 재랜더링될 때는 state가 변경되었을 때면 ui를 재렌더링한다.
+// 그래서 usestate를 써야 한다.
+
+
+// usestate 사용 방법
+// 1. import { useState } from 'react'; react에서 usestate를 데려온다.
+// usestate는 리액트에서 제공하는 함수 중 하나이다. 리액트에서는 이것을 훅이라고 부른다. 즉 usestate는 훅 중에 하나이다.
+// 그래서 usestate 함수가 무엇을 리턴하느냐??? 했을 때 array 배열을 리턴하는데 아이템이 2개 들어있는 배열(array)를 리턴한다.
+// 그 배열 첫번째에서는 초기값을 담고 있는 state 변수, 두번째에 있는 애는 state 값을 변경할 수 있또록 도와주는 set함수
+// 이 두가지 값을 배열로 리턴한다.
+// state를 변수처럼 사용하면 안되고 값을 변경할 때는 변경함수를 호출해서 값을 그 안에 집어 넣어야 한다.
+
+
+// state값이 업데이트 될 때마다 function App이란 앱을 다시 실행시키면서 변경된 UI를 업데이트한다.
+// 즉 함수가 다시 실행되기 때문에 변수는 다시 초기화되는 것이다.
+// 변수는 값을 저장하지 않고 함수가 호출될 때바다 초기화 된다.
+
+
+// 왜 한박자 늦게 반응을 하는지
+// STATE 값이 변경되어 함수가 호출될 때 바로 아 여기에 변경값이 있으니 바로 변경값을 실행하는 것이 아니라, 
+// 변경되어야 하는 set함수들을 싹 모아서 함수를 다 체크한 뒤에 나서 한번에 처리한다. 그래서 이걸 비동기적이라는 것이다.
+// 그래서 state는 기존값을 잃어버리지 않고 기억하고 있다. 즉 중요한 것은 state에 저장하는 습관을 두는 것이 좋다.
+
+// ,콘솔로그에 결과 값이 두개 찍히는 이유는
+// app.js에 작성한 내용은 index.jsx를 거쳐서 root라는 아이디 값을 div에 그려진다.
+// </React.StrictMode>를 지우면 된다. 이게 뭐냐고 리액트로 개발할 때 장재먹인 문제가 있는지 검사해주는 모드이다.
+// </React.StrictMode>가 스스로 문제점을 찾아주는 것은 아니지만,
+// 문제가 될 수 있는 함수를 두번 실행해서 그 결과값이 다르면 더 쉽게 문제를 찾을 수 있게 도와주는 역할을 하는 것이다.
+
+// index.js => index.html 파일과 App.js 파일을 연결해주는 연결 고리라고 생각하면 된다.

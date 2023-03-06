@@ -57,3 +57,4 @@ console.log(person.age >= 18 ? (person.age >= 65 ? '노인입니다.' : '성인�
 // person.name 출력하고 없다면 '이름이 없다' 출력
 
 console.log(person.name && true ? person.name : '이름이 없습니다.');
+console.log(person.name == '' ? person.name : '이름이 없습니다.');
