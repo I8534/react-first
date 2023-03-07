@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Box from './component/Box';
 import './component/State.css';
 import Comment from './component/Comment';
+import CommentList from './component/CommentList';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
   return (
    <div className='App'>
-    <Comment/>
+    <CommentList/>
 
    </div>
  );
