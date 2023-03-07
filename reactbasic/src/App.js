@@ -4,6 +4,8 @@ import './App.css';
 import State from './component/state';
 import { useState } from 'react';
 import Box from './component/Box';
+import './component/State.css';
+import Comment from './component/Comment';
 
 
 function App() {
@@ -24,18 +26,23 @@ function App() {
     // 그리고 화면상에는 increase함수가 완전히 실행되어 변한 count 값이 반영된다고 생각하면 되는지?
   }
 
+  // let num1 =[1,2,3,4]
+  // let name = ['해민', '승호', '원재', '재학']
+
+  let name = ['라라라', '리리리', '로로로']
+  let talk = ['안녕하세요. 집에가고 싶다.', '리액트 재밌따!!', '리액트 리액트 리액트']
+  
+
+
   return (
    <div className='App'>
-    {/* <State/> */}
-    <h1>{count}</h1>
-    <button onClick={increase}>+1</button>
+    <Comment/>
+
    </div>
  );
 }
 
 export default App;
-
-
 
 
 // 리엑트 자체가 stat에 반응하게 만들어졌다 그래서 리엑트라고 하는 것이다.
@@ -64,10 +71,16 @@ export default App;
 // 변경되어야 하는 set함수들을 싹 모아서 함수를 다 체크한 뒤에 나서 한번에 처리한다. 그래서 이걸 비동기적이라는 것이다.
 // 그래서 state는 기존값을 잃어버리지 않고 기억하고 있다. 즉 중요한 것은 state에 저장하는 습관을 두는 것이 좋다.
 
+
 // ,콘솔로그에 결과 값이 두개 찍히는 이유는
 // app.js에 작성한 내용은 index.jsx를 거쳐서 root라는 아이디 값을 div에 그려진다.
 // </React.StrictMode>를 지우면 된다. 이게 뭐냐고 리액트로 개발할 때 장재먹인 문제가 있는지 검사해주는 모드이다.
 // </React.StrictMode>가 스스로 문제점을 찾아주는 것은 아니지만,
 // 문제가 될 수 있는 함수를 두번 실행해서 그 결과값이 다르면 더 쉽게 문제를 찾을 수 있게 도와주는 역할을 하는 것이다.
 
+
 // index.js => index.html 파일과 App.js 파일을 연결해주는 연결 고리라고 생각하면 된다.
+
+
+
+
